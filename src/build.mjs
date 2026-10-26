@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { LANGS, SITE_URL, ic, sprite, bundleKeys } from './content.mjs';
+import { CAT } from './cat.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PAGES = ['index', 'services', 'book'];
@@ -71,7 +72,7 @@ function header(c, page) {
     : `<a href="${c.altHref(page)}" hreflang="${code}" lang="${code}" aria-label="${esc(LANGS[code].label)}">${code.toUpperCase()}</a>`)).join('');
   return `
 <header class="top"><div class="wrap bar">
-  <a class="brand" href="${c.link('index')}"><span class="logo">A</span>Alex Croitoriu</a>
+  <a class="brand" href="${c.link('index')}" aria-label="Alex Croitoriu"><span class="logo" aria-hidden="true">A</span><span class="nm" aria-hidden="true">${nameLetters()}</span></a>
   <nav class="links" aria-label="${esc(t.nav.aria)}">
     <a href="${c.link('index')}"${cur('index')}>${esc(t.nav.home)}</a>
     <a href="${c.link('services')}"${cur('services')}>${esc(t.nav.services)}</a>
@@ -81,7 +82,13 @@ function header(c, page) {
   <div class="langs" role="group" aria-label="${esc(t.nav.langAria)}">${langs}</div>
   <a class="btn btn-sm" href="${c.link('book')}">${esc(t.nav.cta)}</a>
   <button class="menu-btn" aria-label="${esc(t.nav.menu)}" aria-expanded="false"><span></span><span></span></button>
-</div></header>`;
+</div></header>
+<div class="wrap cat-anchor">${CAT}</div>`;
+}
+
+function nameLetters() {
+  let i = 0;
+  return ['Alex', 'Croitoriu'].map((w) => `<span class="w">${[...w].map((ch) => `<i style="--i:${++i}">${ch}</i>`).join('')}</span>`).join(' ');
 }
 
 const footer = (c) => `<footer class="foot"><div class="wrap">${esc(c.t.footer)}</div></footer>`;

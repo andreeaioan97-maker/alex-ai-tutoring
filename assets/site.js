@@ -20,6 +20,11 @@
     });
   }
 
+  // ---- the letters of the name only bounce while the cat is in view (top of the page) ----
+  var atTop = function () { document.body.classList.toggle('at-top', (window.scrollY || 0) < 30); };
+  atTop();
+  window.addEventListener('scroll', atTop, { passive: true });
+
   // ---- demo: vague ask vs clear ask ----
   var demo = $('[data-demo]');
   if (demo) {
