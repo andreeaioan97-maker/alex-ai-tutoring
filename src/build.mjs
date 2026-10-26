@@ -1,12 +1,16 @@
 // Generates the English pages (repo root) and Romanian pages (ro/) from src/content.mjs.
 // Run from the repo root:  node src/build.mjs
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { LANGS, SITE_URL, ic, sprite, bundleKeys } from './content.mjs';
 import { CAT } from './cat.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+// Version stamp on the css/js links so browsers fetch fresh files after every change.
+const ver = (f) => crypto.createHash('md5').update(fs.readFileSync(path.join(root, 'assets', f))).digest('hex').slice(0, 8);
+const V = { 'style.css': ver('style.css'), 'config.js': ver('config.js'), 'site.js': ver('site.js') };
 const PAGES = ['index', 'services', 'book'];
 const metaKey = { index: 'home', services: 'services', book: 'book' };
 const bundleIcons = { single: 'message', starter: 'sparkles', plan: 'compass', custom: 'users' };
@@ -20,7 +24,7 @@ function ctx(code) {
   const abs = (page, lang) => SITE_URL + (lang === 'en' ? '' : 'ro/') + (page === 'index' ? '' : `${page}.html`);
   return {
     code, t,
-    asset: (p) => (code === 'en' ? '' : '../') + 'assets/' + p,
+    asset: (p) => (code === 'en' ? '' : '../') + 'assets/' + p + (V[p] ? `?v=${V[p]}` : ''),
     link: (page, hash = '') => `${page}.html${hash}`,
     altHref: (page) => (code === 'en' ? `ro/${page}.html` : `../${page}.html`),
     abs,
