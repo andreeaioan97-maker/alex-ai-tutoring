@@ -1,0 +1,9 @@
+{
+  "repository": "andreeaioan97-maker/alex-ai-tutoring",
+  "checks": [
+    ["node", "--check", "assets/site.js"],
+    ["node", "--check", "assets/config.js"],
+    ["python3", "scripts/check_site.py", "pages"],
+    ["python3", "scripts/check_site.py", "contact"]
+  ]
+}
