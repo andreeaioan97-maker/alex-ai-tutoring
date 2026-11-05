@@ -122,7 +122,7 @@ const slab = (c, b, i) => `
   ${b.featured ? `<span class="stamp">${esc(c.t.recommended)}</span>` : ''}
   <div class="slab-l"><span class="slabno">${num(i)}</span><h3>${esc(b.name)}</h3><span class="tag">${esc(b.tag)}</span></div>
   <div class="slab-m"><p>${esc(b.desc)}</p><ul class="ticks">${b.features.map((f) => `<li>${ic('check')}${esc(f)}</li>`).join('')}</ul></div>
-  <div class="slab-r">${price(b)}<a class="btn btn-ink btn-block" href="${c.link('book')}">${esc(c.t.ask)}</a></div>
+  <div class="slab-r">${price(b)}<a class="btn btn-ink btn-block" href="${c.link('book')}#ask">${esc(c.t.ask)}</a></div>
 </article>`;
 
 const mini = (c, b, i) => `<a class="mini s${i % 4}" href="${c.link('services')}"><span class="slabno">${num(i)}</span><h3>${esc(b.name)}</h3><p>${esc(b.desc)}</p><span class="go">${ic('arrow')}</span></a>`;
@@ -258,11 +258,10 @@ ${footer(c)}`;
 }
 
 function book(c) {
-  const t = c.t, b = t.book;
+  const t = c.t, b = t.book, a = b.ask;
   const text = {
-    windows: b.windows, summaryTitle: b.summaryTitle, day: b.day, time: b.time, none: b.none,
-    errDay: b.errDay, errWin: b.errWin, errName: b.errName, errEmail: b.errEmail, okMail: b.okMail, okCopy: b.okCopy,
-    altCal: b.altCal, mailSubject: b.mailSubject, mailBody: b.mailBody,
+    altCal: b.altCal, errName: a.errName, errEmail: a.errEmail, errMsg: a.errMsg, okMail: a.okMail,
+    mailSubject: a.mailSubject, mailBody: a.mailBody,
   };
   const body = `${header(c, 'book')}
 <main>
@@ -273,40 +272,26 @@ function book(c) {
 </div></section>
 
 <section class="section tight"><div class="wrap">
-  <div class="book" data-booking>
-    <div class="panel">
-      <h2><span class="stepn">1</span>${esc(b.s1)}</h2>
-      <div class="cal">
-        <div class="cal-head">
-          <strong data-cal-title></strong>
-          <div class="cal-nav">
-            <button type="button" data-prev aria-label="${esc(b.prev)}">${ic('left')}</button>
-            <button type="button" data-next aria-label="${esc(b.next)}">${ic('right')}</button>
-          </div>
-        </div>
-        <div class="cal-grid" data-cal-grid role="group" aria-label="${esc(b.calendar)}"></div>
-      </div>
-      <h2 class="second"><span class="stepn">2</span>${esc(b.s2)}</h2>
-      <div class="windows" data-windows role="group" aria-label="${esc(b.s2)}"></div>
-      <p class="note-tz">${esc(b.tz)}</p>
-    </div>
-
-    <form class="panel" data-form novalidate>
-      <h2><span class="stepn">3</span>${esc(b.s3)}</h2>
-      <div class="fld"><label for="f-name">${esc(b.name)}</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
-      <div class="fld"><label for="f-email">${esc(b.email)}</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="fld"><label for="f-type">${esc(b.type)}</label><select id="f-type" name="type">${b.types.map((x) => `<option>${esc(x)}</option>`).join('')}</select></div>
-      <div class="fld"><label for="f-msg">${esc(b.message)}</label><textarea id="f-msg" name="message" placeholder="${esc(b.messagePh)}"></textarea></div>
-      <div class="summary" data-summary aria-live="polite"></div>
-      <button class="btn btn-block" type="submit">${ic('calendar')} ${esc(b.submit)}</button>
-      <p class="err" data-error role="alert"></p>
-      <div class="ok" data-ok hidden></div>
-      <p class="alt" data-alt hidden></p>
-    </form>
-  </div>
   <div class="calendly-wrap" data-calendly hidden>
     <h2>${esc(b.calTitle)}</h2>
+    <p class="note-tz">${esc(b.calHint)}</p>
     <div class="calendly-inline-widget" data-calendly-widget style="min-width:320px;height:700px"></div>
+    <p class="alt" data-alt></p>
+  </div>
+
+  <div class="ask" id="ask">
+    <div class="ask-intro">
+      <h2>${esc(a.title)}</h2>
+      <p class="lead">${esc(a.lead)}</p>
+    </div>
+    <form class="panel" data-ask novalidate>
+      <div class="fld"><label for="f-name">${esc(a.name)}</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="fld"><label for="f-email">${esc(a.email)}</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="fld"><label for="f-msg">${esc(a.message)}</label><textarea id="f-msg" name="message" placeholder="${esc(a.messagePh)}" required></textarea></div>
+      <button class="btn btn-block" type="submit">${ic('message')} ${esc(a.submit)}</button>
+      <p class="err" data-error role="alert"></p>
+      <div class="ok" data-ok hidden></div>
+    </form>
   </div>
   <script type="application/json" id="book-text">${json(text)}</script>
 

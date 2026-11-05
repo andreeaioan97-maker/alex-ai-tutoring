@@ -1,16 +1,10 @@
-// Settings for the booking page. Edit, then push to GitHub; the site updates by itself.
+// Settings for the Book page. Edit, then rebuild; the site updates after publishing.
 window.SITE_CONFIG = {
-  // Booking requests open the visitor's email app, ready to send to this address.
+  // Questions from the Book page's contact form open the visitor's email app, ready to send to this address.
   // Alex agreed to publish this address.
   contactEmail: 'croitoriu.alexandru.code@gmail.com',
 
-  // Alex's Calendly. When set, a "pick an exact time" button appears next to the form,
-  // and a Calendly calendar is embedded below it.
+  // Alex's Calendly, the site's only booking tool. Embedded on the Book page,
+  // with an "open Alex's calendar" link under it as a fallback.
   bookingUrl: 'https://calendly.com/croitoriu-alexandru',
-
-  minDaysAhead: 1,      // earliest day that can be requested = today + this many days
-  maxWeeksAhead: 8,     // how far ahead the calendar goes
-  closedWeekdays: [],   // days that cannot be requested: 0 = Sunday ... 6 = Saturday
-  closedDates: [],      // single days that cannot be requested, as 'YYYY-MM-DD'
-  windows: ['morning', 'afternoon', 'evening', 'flexible'], // times of day that can be requested
 };

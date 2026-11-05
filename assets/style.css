@@ -192,39 +192,16 @@ mark{background:var(--lime);color:var(--ink);padding:0 .12em;border-radius:.12em
 .chat-note small{display:block;font-weight:600;color:var(--muted);margin-top:.15rem}
 
 /* booking */
-.book{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.4rem,3vw,2.4rem);align-items:start}
+.ask{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(1.4rem,3vw,2.4rem);align-items:start;margin-top:clamp(2.5rem,6vw,4.5rem);scroll-margin-top:6rem}
+.ask-intro h2{margin-bottom:.8rem}
 .panel{border:2px solid var(--ink);border-radius:var(--r);box-shadow:var(--sh);background:#fff;padding:clamp(1.1rem,3vw,1.8rem)}
 .panel h2{font-size:1.45rem;letter-spacing:-.03em;margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem;max-width:none}
-.panel h2.second{margin-top:1.8rem}
-.stepn{display:inline-grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;background:var(--lime);border:2px solid var(--ink);font-size:.9rem;font-weight:900}
-.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
-.cal-head strong{font-size:1.15rem;text-transform:capitalize}
-.cal-nav{display:flex;gap:.45rem}
-.cal-nav button{width:38px;height:38px;border:2px solid var(--ink);border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:2px 2px 0 var(--ink)}
-.cal-nav button:hover:not(:disabled){background:var(--lime)}
-.cal-nav button:disabled{opacity:.3;box-shadow:none;cursor:not-allowed}
-.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
-.cal-dow{font-size:.7rem;font-weight:800;text-transform:uppercase;text-align:center;color:var(--muted);padding:.2rem 0}
-.cal-day{aspect-ratio:1;min-height:36px;border:2px solid var(--ink);border-radius:12px;background:#fff;font-weight:800;display:grid;place-items:center;transition:background .1s}
-.cal-day:hover:not(:disabled){background:var(--lime)}
-.cal-day[aria-pressed="true"]{background:var(--ink);color:var(--lime)}
-.cal-day:disabled{border-color:#c9d4c2;color:#b1bdab;background:transparent;cursor:not-allowed}
-.cal-day.today{box-shadow:inset 0 0 0 2px var(--leaf)}
-.cal-blank{visibility:hidden}
-.windows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
-.win{border:2px solid var(--ink);border-radius:14px;background:#fff;padding:.7rem .9rem;font-weight:800;text-align:left;transition:background .1s}
-.win small{display:block;font-weight:600;color:var(--muted)}
-.win:hover{background:var(--pale)}
-.win[aria-pressed="true"]{background:var(--lime)}
-.win[aria-pressed="true"] small{color:var(--ink)}
 .note-tz{font-size:.85rem;color:var(--muted);margin-top:1rem}
 .fld{display:grid;gap:.35rem;margin-bottom:1rem}
 .fld label{font-weight:800;font-size:.92rem}
 .fld input,.fld select,.fld textarea{font:inherit;border:2px solid var(--ink);border-radius:12px;padding:.7rem .85rem;background:var(--pale);color:var(--ink);width:100%}
 .fld textarea{min-height:96px;resize:vertical}
 .fld input:focus-visible,.fld select:focus-visible,.fld textarea:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
-.summary{border:2px dashed var(--ink);border-radius:14px;padding:.8rem 1rem;margin:1.2rem 0;background:var(--pale);line-height:1.6}
-.summary span{font-weight:600;color:var(--muted)}
 .err{color:#8a1c1c;font-weight:700;margin-top:.7rem;min-height:1.3em}
 .ok{border:2px solid var(--ink);background:var(--lime);border-radius:14px;padding:1rem;margin-top:.6rem;font-weight:700;color:var(--ink)}
 .ok pre{white-space:pre-wrap;font:600 .85rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:.7rem;font-weight:600}
@@ -232,7 +209,7 @@ mark{background:var(--lime);color:var(--ink);padding:0 .12em;border-radius:.12em
 .alt[hidden],.ok[hidden]{display:none}
 
 @media (max-width:1000px){
-  .demo,.book{grid-template-columns:1fr}
+  .demo,.ask{grid-template-columns:1fr}
 }
 @media (max-width:820px){
   .menu-btn{order:5}
@@ -245,7 +222,6 @@ mark{background:var(--lime);color:var(--ink);padding:0 .12em;border-radius:.12em
   .langs a,.langs span{padding:.28rem .55rem}
   .chat-top{flex-wrap:wrap}
   .panel h2{font-size:1.25rem}
-  .cal-grid{gap:4px}
 }
 
 .trust{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:1.7rem;font-weight:750;font-size:.95rem}
@@ -300,6 +276,7 @@ mark{background:var(--lime);color:var(--ink);padding:0 .12em;border-radius:.12em
 @keyframes fadec{0%{opacity:0}4%{opacity:1}80%{opacity:1}86%,100%{opacity:0}}
 @keyframes bw{0%,6%,12%,18%,24%,30%{transform:translateY(0)}3%,9%,15%,21%,27%{transform:translateY(-1.8px)}}
 
-.calendly-wrap{margin-top:clamp(2rem,5vw,3.5rem)}
 .calendly-wrap[hidden]{display:none}
-.calendly-wrap h2{margin-bottom:1rem}
+.calendly-wrap h2{margin-bottom:.3rem}
+.calendly-wrap .note-tz{margin:0 0 1rem}
+.calendly-wrap .alt a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
