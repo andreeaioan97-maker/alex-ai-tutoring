@@ -132,7 +132,6 @@ export const en = {
   book: {
     label: 'Book', h1: ['Book your ', 'session', '.'],
     lead: 'Pick a time that suits you in Alex’s calendar below. You get a confirmation email straight away.',
-    calTitle: 'Pick a time', calHint: 'Times are shown in your own time zone.',
     altCal: 'Calendar not showing? Open Alex’s calendar',
     next_: { title: 'What happens next', items: [
       { icon: 'check', title: 'You get a confirmation', text: 'Calendly emails you the time and session details as soon as you book.' },
@@ -251,7 +250,6 @@ export const ro = {
   book: {
     label: 'Programare', h1: ['Programează-ți ', 'sesiunea', '.'],
     lead: 'Alege o oră care ți se potrivește în calendarul lui Alex de mai jos. Primești imediat un email de confirmare.',
-    calTitle: 'Alege o oră', calHint: 'Orele sunt afișate în fusul tău orar.',
     altCal: 'Nu se vede calendarul? Deschide calendarul lui Alex',
     next_: { title: 'Ce urmează', items: [
       { icon: 'check', title: 'Primești confirmarea', text: 'Calendly îți trimite pe email ora și detaliile sesiunii imediat ce te programezi.' },

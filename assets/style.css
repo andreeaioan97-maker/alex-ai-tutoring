@@ -199,7 +199,6 @@ h1 mark span:only-child{border-radius:.12em}
 .chat-note small{display:block;font-weight:600;color:var(--muted);margin-top:.15rem}
 
 /* booking */
-.note-tz{font-size:.85rem;color:var(--muted);margin-top:1rem}
 .alt{margin-top:1rem}
 .alt[hidden]{display:none}
 
@@ -271,6 +270,4 @@ h1 mark span:only-child{border-radius:.12em}
 @keyframes bw{0%,6%,12%,18%,24%,30%{transform:translateY(0)}3%,9%,15%,21%,27%{transform:translateY(-1.8px)}}
 
 .calendly-wrap[hidden]{display:none}
-.calendly-wrap h2{margin-bottom:.3rem}
-.calendly-wrap .note-tz{margin:0 0 1rem}
 .calendly-wrap .alt a{font-weight:700;text-decoration:underline;text-underline-offset:3px}

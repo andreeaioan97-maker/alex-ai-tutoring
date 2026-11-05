@@ -270,8 +270,6 @@ function book(c) {
 
 <section class="section tight"><div class="wrap">
   <div class="calendly-wrap" data-calendly hidden>
-    <h2>${esc(b.calTitle)}</h2>
-    <p class="note-tz">${esc(b.calHint)}</p>
     <div class="calendly-inline-widget" data-calendly-widget style="height:700px"></div>
     <p class="alt" data-alt></p>
   </div>
