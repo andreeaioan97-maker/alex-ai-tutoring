@@ -42,7 +42,7 @@ export const en = {
   },
   strip: ['AI from zero', 'Prompting', 'Anthropic/Claude Code', 'ChatGPT/Codex', 'Automation', 'Safe use', 'Your roadmap'],
   audience: {
-    label: 'Who it’s for', title: 'Everyone is welcome.',
+    label: 'Who it’s for', title: 'For anyone willing and eager to learn.',
     items: [
       { icon: 'sparkles', title: 'Complete beginners', text: 'Never opened an AI tool? Perfect. We start at the very beginning.' },
       { icon: 'briefcase', title: 'Professionals & freelancers', text: 'Save hours every week on writing, research, planning and admin.' },
@@ -160,7 +160,7 @@ export const ro = {
   },
   strip: ['AI de la zero', 'Prompting', 'Anthropic/Claude Code', 'ChatGPT/Codex', 'Automatizări', 'Utilizare sigură', 'Planul tău'],
   audience: {
-    label: 'Pentru cine este', title: 'Oricine este binevenit.',
+    label: 'Pentru cine este', title: 'Pentru oricine are disponibilitatea și dorința de a învăța.',
     items: [
       { icon: 'sparkles', title: 'Începători absoluți', text: 'N-ai deschis niciodată un instrument AI? Perfect. Începem de la zero.' },
       { icon: 'briefcase', title: 'Profesioniști și freelanceri', text: 'Câștigă ore în fiecare săptămână la scris, documentare, planificare și administrativ.' },

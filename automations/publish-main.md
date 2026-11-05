@@ -10,7 +10,7 @@ Agreed values go in automations/approved-public-contact.json; never add one your
 make the contact check pass. .agents/skills/ and .claude/skills/ (Alex's two skills and
 their symlinks) are expected tracked files and are meant to be published.
 Pages are generated: run `node src/build.mjs` after src/ or assets/ changes; never
-hand-edit *.html or ro/*.html.
+hand-edit *.html, en/*.html or ro/*.html.
 
 Review git status, staged and unstaged diffs, untracked file contents, and local
 commits ahead of origin/main. Confirm main and the repository in publish.json.

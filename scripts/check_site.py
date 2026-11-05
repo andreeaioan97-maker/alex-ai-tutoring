@@ -2,7 +2,7 @@
 """Publishing checks for this site. Read-only: never modifies the checkout.
 
   pages    Rebuild with `node src/build.mjs` in a temporary copy and confirm the
-           committed pages (*.html, ro/*.html) match src/content.mjs and assets/.
+           committed pages (*.html, en/*.html, ro/*.html) match src/content.mjs and assets/.
   contact  Scan every file that would be published for Alex's contact details
            (email addresses, phone numbers, tel:/mailto: links, LinkedIn URLs).
            Only values listed in automations/approved-public-contact.json pass;
@@ -18,6 +18,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ['index.html', 'services.html', 'book.html',
+         'en/index.html', 'en/services.html', 'en/book.html',
          'ro/index.html', 'ro/services.html', 'ro/book.html']
 # Technical strings that look like contact data but are not anyone's details.
 NOT_CONTACT = {'git@github.com'}

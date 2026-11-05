@@ -1,4 +1,5 @@
-// Generates the English pages (repo root) and Romanian pages (ro/) from src/content.mjs.
+// Generates the Romanian pages (repo root, the default), the English pages (en/) and
+// redirects from the old Romanian addresses (ro/) from src/content.mjs.
 // Run from the repo root:  node src/build.mjs
 import fs from 'node:fs';
 import crypto from 'node:crypto';
@@ -21,12 +22,12 @@ const num = (i) => String(i + 1).padStart(2, '0');
 
 function ctx(code) {
   const t = LANGS[code];
-  const abs = (page, lang) => SITE_URL + (lang === 'en' ? '' : 'ro/') + (page === 'index' ? '' : `${page}.html`);
+  const abs = (page, lang) => SITE_URL + (lang === 'ro' ? '' : 'en/') + (page === 'index' ? '' : `${page}.html`);
   return {
     code, t,
-    asset: (p) => (code === 'en' ? '' : '../') + 'assets/' + p + (V[p] ? `?v=${V[p]}` : ''),
+    asset: (p) => (code === 'ro' ? '' : '../') + 'assets/' + p + (V[p] ? `?v=${V[p]}` : ''),
     link: (page, hash = '') => `${page}.html${hash}`,
-    altHref: (page) => (code === 'en' ? `ro/${page}.html` : `../${page}.html`),
+    altHref: (page) => (code === 'ro' ? `en/${page}.html` : `../${page}.html`),
     abs,
   };
 }
@@ -49,7 +50,7 @@ function shell(c, page, bodyClass, body, extraHead = '') {
 <link rel="canonical" href="${url}">
 <link rel="alternate" hreflang="en" href="${c.abs(page, 'en')}">
 <link rel="alternate" hreflang="ro" href="${c.abs(page, 'ro')}">
-<link rel="alternate" hreflang="x-default" href="${c.abs(page, 'en')}">
+<link rel="alternate" hreflang="x-default" href="${c.abs(page, 'ro')}">
 <meta property="og:title" content="${esc(m.title)}">
 <meta property="og:description" content="${esc(m.desc)}">
 <meta property="og:type" content="website">
@@ -118,8 +119,8 @@ const strip = (c) => {
 };
 
 const slab = (c, b, i) => `
-<article class="slab s${i % 4}${b.featured ? ' featured' : ''}">
-  ${b.featured ? `<span class="stamp">${esc(c.t.recommended)}</span>` : ''}
+<article class="slab s${i % 4}${b.featured ? ' featured' : ''}">${b.featured ? `
+  <span class="stamp">${esc(c.t.recommended)}</span>` : ''}
   <div class="slab-l"><span class="slabno">${num(i)}</span><h3>${esc(b.name)}</h3><span class="tag">${esc(b.tag)}</span></div>
   <div class="slab-m"><p>${esc(b.desc)}</p><ul class="ticks">${b.features.map((f) => `<li>${ic('check')}${esc(f)}</li>`).join('')}</ul></div>
   <div class="slab-r">${price(b)}<a class="btn btn-ink btn-block" href="${c.link('book')}">${esc(c.t.ask)}</a></div>
@@ -287,8 +288,27 @@ ${footer(c)}`;
 const render = { index: home, services, book };
 for (const code of Object.keys(LANGS)) {
   const c = ctx(code);
-  const dir = code === 'en' ? root : path.join(root, code);
+  const dir = code === 'ro' ? root : path.join(root, code);
   fs.mkdirSync(dir, { recursive: true });
   for (const page of PAGES) fs.writeFileSync(path.join(dir, `${page}.html`), render[page](c));
 }
-console.log('built', PAGES.length * Object.keys(LANGS).length, 'pages');
+// The Romanian pages used to live in ro/; keep those addresses working.
+const roDir = path.join(root, 'ro');
+fs.mkdirSync(roDir, { recursive: true });
+for (const page of PAGES) {
+  const to = `../${page}.html`, abs = SITE_URL + (page === 'index' ? '' : `${page}.html`);
+  fs.writeFileSync(path.join(roDir, `${page}.html`), `<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<title>Alex Croitoriu</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${abs}">
+<meta http-equiv="refresh" content="0; url=${to}">
+<script>location.replace(${json(to)} + location.search + location.hash);</script>
+</head>
+<body><p><a href="${to}">${abs}</a></p></body>
+</html>
+`);
+}
+console.log('built', PAGES.length * Object.keys(LANGS).length, 'pages and', PAGES.length, 'redirects');
