@@ -4,8 +4,9 @@ window.SITE_CONFIG = {
   // Alex agreed to publish this address.
   contactEmail: 'croitoriu.alexandru.code@gmail.com',
 
-  // Optional: a Calendly / Cal.com link. When set, a "pick an exact time" button appears next to the form.
-  bookingUrl: '',
+  // Alex's Calendly. When set, a "pick an exact time" button appears next to the form,
+  // and a Calendly calendar is embedded below it.
+  bookingUrl: 'https://calendly.com/croitoriu-alexandru',
 
   minDaysAhead: 1,      // earliest day that can be requested = today + this many days
   maxWeeksAhead: 8,     // how far ahead the calendar goes

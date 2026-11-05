@@ -130,6 +130,16 @@
     link.href = cfg.bookingUrl; link.target = '_blank'; link.rel = 'noopener';
     link.textContent = T.altCal;
     altEl.appendChild(link);
+
+    var wrap = document.querySelector('[data-calendly]');
+    if (wrap && /^https:\/\/calendly\.com\//.test(cfg.bookingUrl)) {
+      var widget = wrap.querySelector('[data-calendly-widget]');
+      widget.setAttribute('data-url', cfg.bookingUrl + (cfg.bookingUrl.indexOf('?') < 0 ? '?' : '&') + 'hide_gdpr_banner=1');
+      wrap.hidden = false;
+      var sc = document.createElement('script');
+      sc.src = 'https://assets.calendly.com/assets/external/widget.js'; sc.async = true;
+      document.body.appendChild(sc);
+    }
   }
 
   var fill = function (s, v) { return s.replace(/\{(\w+)\}/g, function (_, k) { return v[k] != null ? v[k] : ''; }); };

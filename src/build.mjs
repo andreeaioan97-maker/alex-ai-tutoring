@@ -304,6 +304,10 @@ function book(c) {
       <p class="alt" data-alt hidden></p>
     </form>
   </div>
+  <div class="calendly-wrap" data-calendly hidden>
+    <h2>${esc(b.calTitle)}</h2>
+    <div class="calendly-inline-widget" data-calendly-widget style="min-width:320px;height:700px"></div>
+  </div>
   <script type="application/json" id="book-text">${json(text)}</script>
 
   <div class="sec-head next-head"><h2>${esc(b.next_.title)}</h2></div>

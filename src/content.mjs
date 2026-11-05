@@ -144,6 +144,7 @@ export const en = {
     okMail: 'Your email app should open with the request ready to send. Alex will reply to confirm the time.',
     okCopy: 'Your request is copied. Direct booking opens very soon, thank you for your patience!',
     altCal: 'Prefer to pick an exact time? Open Alex’s calendar',
+    calTitle: 'Or pick an exact time right here',
     mailSubject: 'Booking request: {type}',
     mailBody: 'Hi Alex,\n\nI would like to book: {type}\nPreferred day: {day}\nPreferred time: {time}, Romania time\n\nMy name: {name}\nMy email: {email}\n\n{message}',
     next_: { title: 'What happens next', items: [
@@ -275,6 +276,7 @@ export const ro = {
     okMail: 'Aplicația ta de email ar trebui să se deschidă cu cererea gata de trimis. Alex îți va răspunde pentru a confirma ora.',
     okCopy: 'Cererea ta a fost copiată. Programarea directă se deschide foarte curând, îți mulțumim pentru răbdare!',
     altCal: 'Preferi să alegi o oră exactă? Deschide calendarul lui Alex',
+    calTitle: 'Sau alege direct o oră exactă aici',
     mailSubject: 'Cerere de programare: {type}',
     mailBody: 'Salut Alex,\n\nAș vrea să programez: {type}\nZiua preferată: {day}\nMomentul preferat: {time}, ora României\n\nNumele meu: {name}\nEmailul meu: {email}\n\n{message}',
     next_: { title: 'Ce urmează', items: [
