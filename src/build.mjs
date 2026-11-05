@@ -84,7 +84,6 @@ function header(c, page) {
     <a href="${c.link('book')}"${cur('book')}>${esc(t.nav.book)}</a>
   </nav>
   <div class="langs" role="group" aria-label="${esc(t.nav.langAria)}">${langs}</div>
-  <a class="btn btn-sm" href="${c.link('book')}">${esc(t.nav.cta)}</a>
   <button class="menu-btn" aria-label="${esc(t.nav.menu)}" aria-expanded="false"><span></span><span></span></button>
 </div></header>
 <div class="wrap cat-anchor">${CAT}</div>`;
