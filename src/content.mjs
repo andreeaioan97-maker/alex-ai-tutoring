@@ -29,7 +29,7 @@ export const en = {
   meta: {
     home: { title: 'Alex Croitoriu · AI tutoring for everyone', desc: 'Friendly one-to-one tutoring in AI, prompting and Claude Code, taught in plain language by software developer Alex Croitoriu.' },
     services: { title: 'Services · Alex Croitoriu', desc: 'AI tutoring prices: ad hoc one-to-one sessions at 250 lei and Saturday group sessions at 300 lei per person.' },
-    book: { title: 'Book a session · Alex Croitoriu', desc: 'Book a session with Alex in his calendar, or send him a question first.' },
+    book: { title: 'Book a session · Alex Croitoriu', desc: 'Book a session with Alex directly in his calendar.' },
   },
   nav: { aria: 'Main', home: 'Home', services: 'Services', about: 'About', book: 'Book', langAria: 'Language', menu: 'Menu' },
   photoAlt: 'Photo of Alex (coming soon)',
@@ -40,7 +40,7 @@ export const en = {
     cta: 'Book a session', cta2: 'See services',
     trust: ['No jargon', 'Any starting level', 'At your own pace'], hi: 'Hi, I’m Alex!',
   },
-  strip: ['AI from zero', 'Prompting', 'Claude Code', 'Automation', 'Safe use', 'Your roadmap'],
+  strip: ['AI from zero', 'Prompting', 'Anthropic/Claude Code', 'ChatGPT/Codex', 'Automation', 'Safe use', 'Your roadmap'],
   audience: {
     label: 'Who it’s for', title: 'Everyone is welcome.',
     items: [
@@ -86,9 +86,9 @@ export const en = {
   steps: {
     label: 'How it works', title: 'Three steps. That’s it.',
     items: [
-      { title: 'Say hello', text: 'Book a session or send Alex a question: tell him what you’d love AI to do for you.' },
-      { title: 'Learn by doing', text: 'Hands-on sessions built around your real tasks, not slides.' },
-      { title: 'Keep going', text: 'Follow-up support and a roadmap so it all sticks.' },
+      { icon: 'message', title: 'Say hello', text: 'Book a session and tell Alex what you’d love AI to do for you.' },
+      { icon: 'zap', title: 'Learn by doing', text: 'Hands-on sessions built around your real tasks, not slides.' },
+      { icon: 'compass', title: 'Keep going', text: 'Follow-up support and a roadmap so it all sticks.' },
     ],
   },
   about: {
@@ -122,30 +122,22 @@ export const en = {
     ],
   },
   cta: { title: 'Ready to see what AI can do for you?', text: 'Book a session. No pressure, no jargon, just friendly help with what you want to achieve.', btn: 'Book a session' },
-  servicesPage: { label: 'Services', h1: ['Find the ', 'right way', ' to learn.'], lead: 'Two simple options: a one-to-one session when you need it, or a full Saturday with a group. Not sure which? Ask Alex.' },
+  servicesPage: { label: 'Services', h1: ['Find the ', 'right way', ' to learn.'], lead: 'Two simple options: a one-to-one session when you need it, or a full Saturday with a group.' },
   bundles: {
     single: { name: 'Ad hoc Session', tag: 'One-to-one', amt: '250 lei', note: 'per session · 1 person · 60 minutes', desc: 'One focused 1-on-1 session on a question, a task or an idea. Book it when you need it: 60 minutes.', features: ['Live, hands-on walkthrough', 'Tailored to your question', 'Session notes afterwards'] },
     group: { name: 'Saturday Group Session', tag: 'Small group', amt: '300 lei', note: 'per person · 8 hours · Saturdays', desc: 'A full Saturday of hands-on learning together with a small group, from the basics to building something of your own.', features: ['8 hours, one Saturday', 'Learn alongside other people', 'Hands-on practice with real AI tools', 'Notes to look back on'] },
   },
-  ask: 'Ask about this', recommended: 'Recommended',
+  ask: 'Book this', recommended: 'Recommended',
   includes: { label: 'Always included', title: 'Every session includes.', items: ['Friendly, jargon-free teaching', 'Hands-on practice with real AI tools', 'Any starting level welcome', 'Session notes to look back on'] },
   book: {
     label: 'Book', h1: ['Book your ', 'session', '.'],
     lead: 'Pick a time that suits you in Alex’s calendar below. You get a confirmation email straight away.',
     calTitle: 'Pick a time', calHint: 'Times are shown in your own time zone.',
     altCal: 'Calendar not showing? Open Alex’s calendar',
-    ask: { title: 'Have a question first?', lead: 'Not sure which session fits, or want to ask something before booking? Send Alex a message.',
-      name: 'Your name', email: 'Your email', message: 'Your question',
-      messagePh: 'For example: I’ve never used AI. Is the Ad hoc Session a good place to start?',
-      submit: 'Send question',
-      errName: 'Please add your name.', errEmail: 'Please add a valid email address.', errMsg: 'Please write your question.',
-      okMail: 'Your email app should open with the question ready to send. Alex will reply by email.',
-      mailSubject: 'Question from {name}',
-      mailBody: 'Hi Alex,\n\n{message}\n\n{name}\n{email}' },
     next_: { title: 'What happens next', items: [
-      { title: 'You get a confirmation', text: 'Calendly emails you the time and session details as soon as you book.' },
-      { title: 'Learn by doing', text: 'Bring something you want to get done and work on it together with Alex. No preparation needed.' },
-      { title: 'Keep going', text: 'Book another session whenever you need one, or join a Saturday group.' },
+      { icon: 'check', title: 'You get a confirmation', text: 'Calendly emails you the time and session details as soon as you book.' },
+      { icon: 'zap', title: 'Learn by doing', text: 'Bring something you want to get done and work on it together with Alex. No preparation needed.' },
+      { icon: 'compass', title: 'Keep going', text: 'Book another session whenever you need one, or join a Saturday group.' },
     ] },
   },
   footer: '© 2026 Alex Croitoriu · Bucharest, Romania · AI tutoring for everyone',
@@ -156,7 +148,7 @@ export const ro = {
   meta: {
     home: { title: 'Alex Croitoriu · Meditații AI pentru oricine', desc: 'Meditații individuale și prietenoase despre AI, prompting și Claude Code, explicate pe înțelesul tuturor de dezvoltatorul de software Alex Croitoriu.' },
     services: { title: 'Servicii · Alex Croitoriu', desc: 'Prețuri meditații AI: sesiuni individuale ad hoc la 250 lei și sesiuni de grup de sâmbătă la 300 lei de persoană.' },
-    book: { title: 'Programează o sesiune · Alex Croitoriu', desc: 'Programează o sesiune cu Alex direct în calendarul lui sau trimite-i mai întâi o întrebare.' },
+    book: { title: 'Programează o sesiune · Alex Croitoriu', desc: 'Programează o sesiune cu Alex direct în calendarul lui.' },
   },
   nav: { aria: 'Principal', home: 'Acasă', services: 'Servicii', about: 'Despre', book: 'Programare', langAria: 'Limba', menu: 'Meniu' },
   photoAlt: 'Fotografia lui Alex (în curând)',
@@ -167,7 +159,7 @@ export const ro = {
     cta: 'Programează o sesiune', cta2: 'Vezi serviciile',
     trust: ['Fără jargon', 'Orice nivel de start', 'În ritmul tău'], hi: 'Salut, sunt Alex!',
   },
-  strip: ['AI de la zero', 'Prompting', 'Claude Code', 'Automatizări', 'Utilizare sigură', 'Planul tău'],
+  strip: ['AI de la zero', 'Prompting', 'Anthropic/Claude Code', 'ChatGPT/Codex', 'Automatizări', 'Utilizare sigură', 'Planul tău'],
   audience: {
     label: 'Pentru cine este', title: 'Oricine este binevenit.',
     items: [
@@ -213,9 +205,9 @@ export const ro = {
   steps: {
     label: 'Cum funcționează', title: 'Trei pași. Atât.',
     items: [
-      { title: 'Spune salut', text: 'Programează o sesiune sau trimite-i lui Alex o întrebare: spune-i ce ți-ar plăcea să facă AI-ul pentru tine.' },
-      { title: 'Învață făcând', text: 'Sesiuni practice construite în jurul sarcinilor tale reale, nu al prezentărilor.' },
-      { title: 'Continuă', text: 'Suport după sesiuni și un plan, ca tot ce ai învățat să rămână.' },
+      { icon: 'message', title: 'Spune salut', text: 'Programează o sesiune și spune-i lui Alex ce ți-ar plăcea să facă AI-ul pentru tine.' },
+      { icon: 'zap', title: 'Învață făcând', text: 'Sesiuni practice construite în jurul sarcinilor tale reale, nu al prezentărilor.' },
+      { icon: 'compass', title: 'Continuă', text: 'Suport după sesiuni și un plan, ca tot ce ai învățat să rămână.' },
     ],
   },
   about: {
@@ -249,30 +241,22 @@ export const ro = {
     ],
   },
   cta: { title: 'Ești gata să vezi ce poate face AI-ul pentru tine?', text: 'Programează o sesiune. Fără presiune, fără jargon, doar ajutor prietenos pentru ce vrei să realizezi.', btn: 'Programează o sesiune' },
-  servicesPage: { label: 'Servicii', h1: ['Găsește ', 'calea potrivită', ' de a învăța.'], lead: 'Două variante simple: o sesiune individuală când ai nevoie sau o sâmbătă întreagă în grup. Nu știi pe care s-o alegi? Întreabă-l pe Alex.' },
+  servicesPage: { label: 'Servicii', h1: ['Găsește ', 'calea potrivită', ' de a învăța.'], lead: 'Două variante simple: o sesiune individuală când ai nevoie sau o sâmbătă întreagă în grup.' },
   bundles: {
     single: { name: 'Sesiune ad hoc', tag: 'Individual', amt: '250 lei', note: 'pe sesiune · 1 persoană · 60 de minute', desc: 'O sesiune individuală concentrată pe o întrebare, o sarcină sau o idee. O programezi când ai nevoie: 60 de minute.', features: ['Parcurgere practică, live', 'Adaptată întrebării tale', 'Notițe după sesiune'] },
     group: { name: 'Sesiune de grup de sâmbătă', tag: 'Grup mic', amt: '300 lei', note: 'pe persoană · 8 ore · sâmbăta', desc: 'O zi întreagă de sâmbătă de învățat practic împreună cu un grup mic, de la bazele AI până la construirea a ceva al tău.', features: ['8 ore, într-o sâmbătă', 'Înveți alături de alți oameni', 'Practică cu instrumente AI reale', 'Notițe la care te poți întoarce'] },
   },
-  ask: 'Întreabă despre acesta', recommended: 'Recomandat',
+  ask: 'Programează', recommended: 'Recomandat',
   includes: { label: 'Mereu inclus', title: 'Fiecare sesiune include.', items: ['Predare prietenoasă, fără jargon', 'Practică cu instrumente AI reale', 'Orice nivel de start este binevenit', 'Notițe de sesiune la care te poți întoarce'] },
   book: {
     label: 'Programare', h1: ['Programează-ți ', 'sesiunea', '.'],
     lead: 'Alege o oră care ți se potrivește în calendarul lui Alex de mai jos. Primești imediat un email de confirmare.',
     calTitle: 'Alege o oră', calHint: 'Orele sunt afișate în fusul tău orar.',
     altCal: 'Nu se vede calendarul? Deschide calendarul lui Alex',
-    ask: { title: 'Ai o întrebare înainte?', lead: 'Nu știi sigur ce sesiune ți se potrivește sau vrei să întrebi ceva înainte de programare? Trimite-i un mesaj lui Alex.',
-      name: 'Numele tău', email: 'Emailul tău', message: 'Întrebarea ta',
-      messagePh: 'De exemplu: n-am folosit niciodată AI. Sesiunea ad hoc e un început bun?',
-      submit: 'Trimite întrebarea',
-      errName: 'Te rog adaugă numele tău.', errEmail: 'Te rog adaugă o adresă de email validă.', errMsg: 'Te rog scrie întrebarea ta.',
-      okMail: 'Aplicația ta de email ar trebui să se deschidă cu întrebarea gata de trimis. Alex îți va răspunde pe email.',
-      mailSubject: 'Întrebare de la {name}',
-      mailBody: 'Salut Alex,\n\n{message}\n\n{name}\n{email}' },
     next_: { title: 'Ce urmează', items: [
-      { title: 'Primești confirmarea', text: 'Calendly îți trimite pe email ora și detaliile sesiunii imediat ce te programezi.' },
-      { title: 'Înveți lucrând', text: 'Aduci ceva ce vrei să rezolvi și lucrați împreună la asta. Nu e nevoie de pregătire.' },
-      { title: 'Continui', text: 'Programezi o nouă sesiune oricând ai nevoie sau te alături unui grup de sâmbătă.' },
+      { icon: 'check', title: 'Primești confirmarea', text: 'Calendly îți trimite pe email ora și detaliile sesiunii imediat ce te programezi.' },
+      { icon: 'zap', title: 'Înveți lucrând', text: 'Aduci ceva ce vrei să rezolvi și lucrați împreună la asta. Nu e nevoie de pregătire.' },
+      { icon: 'compass', title: 'Continui', text: 'Programezi o nouă sesiune oricând ai nevoie sau te alături unui grup de sâmbătă.' },
     ] },
   },
   footer: '© 2026 Alex Croitoriu · București, România · Meditații AI pentru oricine',

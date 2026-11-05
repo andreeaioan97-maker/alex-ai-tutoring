@@ -31,7 +31,8 @@ function ctx(code) {
   };
 }
 
-const h1 = (parts, tag) => `${esc(parts[0])}<${tag}>${esc(parts[1])}</${tag}>${esc(parts[2])}`;
+// Highlighted words are separate fixed-height boxes, so the highlight never covers the neighbouring lines.
+const h1 = (parts, tag) => `${esc(parts[0])}<${tag}>${parts[1].split(' ').map((w) => `<span>${esc(w)}</span>`).join(' ')}</${tag}>${esc(parts[2])}`;
 const price = (b) => `<div class="price"><span class="amt">${esc(b.amt)}</span><span class="note">${esc(b.note)}</span></div>`;
 const bundles = (c) => bundleKeys.map((k) => ({ key: k, ...c.t.bundles[k], icon: bundleIcons[k], featured: false }));
 
@@ -78,9 +79,9 @@ function header(c, page) {
 <header class="top"><div class="wrap bar">
   <a class="brand" href="${c.link('index')}" aria-label="Alex Croitoriu"><span class="logo" aria-hidden="true">A</span><span class="nm" aria-hidden="true">${nameLetters()}</span></a>
   <nav class="links" aria-label="${esc(t.nav.aria)}">
-    <a href="${c.link('index')}"${cur('index')}>${esc(t.nav.home)}</a>
+    <a href="${c.link('index')}" data-nav="home"${cur('index')}>${esc(t.nav.home)}</a>
     <a href="${c.link('services')}"${cur('services')}>${esc(t.nav.services)}</a>
-    <a href="${c.link('index', '#about')}">${esc(t.nav.about)}</a>
+    <a href="${c.link('index', '#about')}" data-nav="about">${esc(t.nav.about)}</a>
     <a href="${c.link('book')}"${cur('book')}>${esc(t.nav.book)}</a>
   </nav>
   <div class="langs" role="group" aria-label="${esc(t.nav.langAria)}">${langs}</div>
@@ -121,7 +122,7 @@ const slab = (c, b, i) => `
   ${b.featured ? `<span class="stamp">${esc(c.t.recommended)}</span>` : ''}
   <div class="slab-l"><span class="slabno">${num(i)}</span><h3>${esc(b.name)}</h3><span class="tag">${esc(b.tag)}</span></div>
   <div class="slab-m"><p>${esc(b.desc)}</p><ul class="ticks">${b.features.map((f) => `<li>${ic('check')}${esc(f)}</li>`).join('')}</ul></div>
-  <div class="slab-r">${price(b)}<a class="btn btn-ink btn-block" href="${c.link('book')}#ask">${esc(c.t.ask)}</a></div>
+  <div class="slab-r">${price(b)}<a class="btn btn-ink btn-block" href="${c.link('book')}">${esc(c.t.ask)}</a></div>
 </article>`;
 
 const mini = (c, b, i) => `<a class="mini s${i % 4}" href="${c.link('services')}"><span class="slabno">${num(i)}</span><h3>${esc(b.name)}</h3><p>${esc(b.desc)}</p><span class="go">${ic('arrow')}</span></a>`;
@@ -192,7 +193,7 @@ ${demo(c)}
 
 <section class="section"><div class="wrap">
   <div class="sec-head"><span class="label">${esc(t.steps.label)}</span><h2>${esc(t.steps.title)}</h2></div>
-  <div class="cards c3">${t.steps.items.map((s, i) => `<article class="stk s${i}"><span class="bignum">${i + 1}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></article>`).join('')}</div>
+  <div class="cards c3 steps">${t.steps.items.map((s, i) => `<article class="stk s${i}">${ic(s.icon, 'step-ic')}<h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></article>`).join('')}</div>
 </div></section>
 
 <section class="section tight" id="about"><div class="wrap">
@@ -257,11 +258,8 @@ ${footer(c)}`;
 }
 
 function book(c) {
-  const t = c.t, b = t.book, a = b.ask;
-  const text = {
-    altCal: b.altCal, errName: a.errName, errEmail: a.errEmail, errMsg: a.errMsg, okMail: a.okMail,
-    mailSubject: a.mailSubject, mailBody: a.mailBody,
-  };
+  const t = c.t, b = t.book;
+  const text = { altCal: b.altCal };
   const body = `${header(c, 'book')}
 <main>
 <section class="hero hero-sm"><div class="wrap">
@@ -274,28 +272,14 @@ function book(c) {
   <div class="calendly-wrap" data-calendly hidden>
     <h2>${esc(b.calTitle)}</h2>
     <p class="note-tz">${esc(b.calHint)}</p>
-    <div class="calendly-inline-widget" data-calendly-widget style="min-width:320px;height:700px"></div>
+    <div class="calendly-inline-widget" data-calendly-widget style="height:700px"></div>
     <p class="alt" data-alt></p>
   </div>
 
-  <div class="ask" id="ask">
-    <div class="ask-intro">
-      <h2>${esc(a.title)}</h2>
-      <p class="lead">${esc(a.lead)}</p>
-    </div>
-    <form class="panel" data-ask novalidate>
-      <div class="fld"><label for="f-name">${esc(a.name)}</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
-      <div class="fld"><label for="f-email">${esc(a.email)}</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="fld"><label for="f-msg">${esc(a.message)}</label><textarea id="f-msg" name="message" placeholder="${esc(a.messagePh)}" required></textarea></div>
-      <button class="btn btn-block" type="submit">${ic('message')} ${esc(a.submit)}</button>
-      <p class="err" data-error role="alert"></p>
-      <div class="ok" data-ok hidden></div>
-    </form>
-  </div>
   <script type="application/json" id="book-text">${json(text)}</script>
 
   <div class="sec-head next-head"><h2>${esc(b.next_.title)}</h2></div>
-  <div class="cards c3">${b.next_.items.map((s, i) => `<article class="stk s${i}"><span class="bignum">${i + 1}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></article>`).join('')}</div>
+  <div class="cards c3 steps">${b.next_.items.map((s, i) => `<article class="stk s${i}">${ic(s.icon, 'step-ic')}<h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></article>`).join('')}</div>
 </div></section>
 </main>
 ${footer(c)}`;

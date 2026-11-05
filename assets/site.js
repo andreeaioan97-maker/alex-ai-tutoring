@@ -1,4 +1,4 @@
-// Menu, "bring your own task" demo, the Calendly booking embed and the question form. No libraries; only Calendly's widget loads from the internet, on the Book page.
+// Menu, "bring your own task" demo and the Calendly booking embed. No libraries; only Calendly's widget loads from the internet, on the Book page.
 (function () {
   'use strict';
   var cfg = window.SITE_CONFIG || {};
@@ -18,6 +18,18 @@
         menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
+  }
+
+  // ---- "About" in the menu is selected while the About section is the target (#about) ----
+  var aboutLink = $('.links [data-nav="about"]'), homeLink = $('.links [data-nav="home"]');
+  if (aboutLink && homeLink && document.body.classList.contains('page-home')) {
+    var syncNav = function () {
+      var about = window.location.hash === '#about';
+      if (about) { aboutLink.setAttribute('aria-current', 'location'); homeLink.removeAttribute('aria-current'); }
+      else { homeLink.setAttribute('aria-current', 'page'); aboutLink.removeAttribute('aria-current'); }
+    };
+    syncNav();
+    window.addEventListener('hashchange', syncNav);
   }
 
   // ---- the letters of the name only bounce while the cat is in view (top of the page) ----
@@ -44,7 +56,7 @@
     tabs.forEach(function (c) { c.addEventListener('click', function () { mode = c.getAttribute('data-mode'); paint(); }); });
   }
 
-  // ---- book page: Calendly booking + question form ----
+  // ---- book page: Calendly booking ----
   var textEl = $('#book-text');
   if (!textEl) return;
   var T = JSON.parse(textEl.textContent);
@@ -62,27 +74,4 @@
     sc.src = 'https://assets.calendly.com/assets/external/widget.js'; sc.async = true;
     document.body.appendChild(sc);
   }
-
-  var form = $('[data-ask]');
-  if (!form) return;
-  var errEl = $('[data-error]', form), okEl = $('[data-ok]', form);
-  var fill = function (s, v) { return s.replace(/\{(\w+)\}/g, function (_, k) { return v[k] != null ? v[k] : ''; }); };
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var f = new FormData(form);
-    var v = {
-      name: String(f.get('name') || '').trim(),
-      email: String(f.get('email') || '').trim(),
-      message: String(f.get('message') || '').trim(),
-    };
-    var err = !v.name ? T.errName : !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email) ? T.errEmail : !v.message ? T.errMsg : '';
-    errEl.textContent = err;
-    okEl.hidden = true;
-    if (err || !cfg.contactEmail) return;
-    okEl.textContent = T.okMail;
-    okEl.hidden = false;
-    window.location.href = 'mailto:' + cfg.contactEmail + '?subject=' + encodeURIComponent(fill(T.mailSubject, v)) +
-      '&body=' + encodeURIComponent(fill(T.mailBody, v));
-  });
 })();
