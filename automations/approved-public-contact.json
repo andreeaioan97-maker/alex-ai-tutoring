@@ -1,4 +1,4 @@
 {
   "_note": "Alex contact details (email, phone, LinkedIn) allowed on the public site. Add a value ONLY when Andreea says Alex agreed. Checked by scripts/check_site.py contact.",
-  "approved": []
+  "approved": ["croitoriu.alexandru.code@gmail.com"]
 }

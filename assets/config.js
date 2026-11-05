@@ -1,8 +1,8 @@
 // Settings for the booking page. Edit, then push to GitHub; the site updates by itself.
 window.SITE_CONFIG = {
   // Booking requests open the visitor's email app, ready to send to this address.
-  // Left empty on purpose until Alex confirms the address he wants to use publicly.
-  contactEmail: '',
+  // Alex agreed to publish this address.
+  contactEmail: 'croitoriu.alexandru.code@gmail.com',
 
   // Optional: a Calendly / Cal.com link. When set, a "pick an exact time" button appears next to the form.
   bookingUrl: '',

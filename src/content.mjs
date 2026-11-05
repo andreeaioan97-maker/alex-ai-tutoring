@@ -22,13 +22,13 @@ const ICONS = {
 export const ic = (name, cls = '') => `<svg class="ic ${cls}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 export const sprite = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>${Object.entries(ICONS).map(([k, v]) => `<symbol id="i-${k}" viewBox="0 0 24 24">${v}</symbol>`).join('')}</defs></svg>`;
 
-const bundleKeys = ['single', 'starter', 'plan', 'custom'];
+const bundleKeys = ['single', 'group'];
 
 export const en = {
   lang: 'en', label: 'English',
   meta: {
     home: { title: 'Alex Croitoriu · AI tutoring for everyone', desc: 'Friendly one-to-one tutoring in AI, prompting and Claude Code, taught in plain language by software developer Alex Croitoriu.' },
-    services: { title: 'Services · Alex Croitoriu', desc: 'AI tutoring bundles: single sessions, getting started, learning plans and custom support plans.' },
+    services: { title: 'Services · Alex Croitoriu', desc: 'AI tutoring prices: ad hoc one-to-one sessions at 250 lei and Saturday group sessions at 300 lei per person.' },
     book: { title: 'Book a free intro call · Alex Croitoriu', desc: 'Pick a day and a time of day for your free intro call with Alex. He will reply to confirm the exact time.' },
   },
   nav: { aria: 'Main', home: 'Home', services: 'Services', about: 'About', book: 'Book', cta: 'Free intro call', langAria: 'Language', menu: 'Menu' },
@@ -116,22 +116,19 @@ export const en = {
     items: [
       { q: 'Do I need any technical background?', a: 'Not at all. Alex works with complete beginners and experienced professionals alike, and starts wherever you are.' },
       { q: 'What do we actually do in a session?', a: 'We start from something you want to get done (writing, planning, research, an idea) and work on it together, live, using real AI tools.' },
-      { q: 'Can a plan be customised?', a: 'Yes. Every plan starts with a short chat about your goals, and Custom Support Plans are shaped entirely around you.' },
+      { q: 'How do the two options differ?', a: 'An ad hoc session is one-to-one, 1.5 hours (2 at most), and you book it whenever you need it. The group session is a full 8-hour Saturday with a small group.' },
       { q: 'Which languages are sessions in?', a: 'English or Romanian, whichever you are more comfortable with.' },
       { q: 'Do I need to buy any software?', a: 'Many AI tools have free versions. Alex will help you work out what you actually need before you spend anything.' },
     ],
   },
   cta: { title: 'Ready to see what AI can do for you?', text: 'Book a free intro call. No pressure, no jargon, just a friendly chat about what you want to achieve.', btn: 'Book your free call' },
-  servicesPage: { label: 'Services', h1: ['Find the ', 'right way', ' to learn.'], lead: 'Pick a bundle, or tell Alex what you need and he will shape a plan around you.' },
+  servicesPage: { label: 'Services', h1: ['Find the ', 'right way', ' to learn.'], lead: 'Two simple options: a one-to-one session when you need it, or a full Saturday with a group. Not sure which? Ask Alex.' },
   bundles: {
-    single: { name: 'Single Session', tag: 'Try it out', desc: 'One focused 1-on-1 session on a question, a task or an idea. A relaxed way to see what working with Alex feels like.', features: ['Live, hands-on walkthrough', 'Tailored to your question', 'Session notes afterwards'] },
-    starter: { name: 'Getting Started', tag: 'For beginners', desc: 'Your first steps with AI: how it works, how to prompt it well, and a first small project of your own.', features: ['AI concepts in plain language', 'Prompting basics, practised live', 'A first real project', 'Session notes afterwards'] },
-    plan: { name: 'Learning Plan', tag: 'For your goals', desc: 'A structured series built around your goals, from the basics to using AI confidently in your work or building your own tools.', features: ['Goals set together at the start', 'Step-by-step learning path', 'Questions answered between sessions', 'Personal roadmap to keep going'] },
-    custom: { name: 'Custom Support Plan', tag: 'Ongoing', desc: 'Regular sessions plus quick-question support, shaped around how you work. A guide on call while you grow at your own rhythm.', features: ['Flexible, tailored schedule', 'Priority help between sessions', 'Plan adjusts as you progress', 'Great for busy professionals and small businesses'] },
+    single: { name: 'Ad hoc Session', tag: 'One-to-one', amt: '250 lei', note: 'per session · 1 person · up to 2 hours', desc: 'One focused 1-on-1 session on a question, a task or an idea. Book it when you need it: 1.5 hours, up to 2 at most.', features: ['Live, hands-on walkthrough', 'Tailored to your question', 'Session notes afterwards'] },
+    group: { name: 'Saturday Group Session', tag: 'Small group', amt: '300 lei', note: 'per person · 8 hours · Saturdays', desc: 'A full Saturday of hands-on learning together with a small group, from the basics to building something of your own.', features: ['8 hours, one Saturday', 'Learn alongside other people', 'Hands-on practice with real AI tools', 'Notes to look back on'] },
   },
-  group: { name: 'Groups & Team Workshops', tag: 'For teams', desc: 'A shared, hands-on session for a team, a class or a group of friends. Topics and length are tailored to the group.', btn: 'Ask about workshops' },
-  priceNote: 'Price coming soon', ask: 'Ask about this', recommended: 'Recommended',
-  includes: { label: 'Always included', title: 'Every bundle includes.', items: ['Friendly, jargon-free teaching', 'Hands-on practice with real AI tools', 'Any starting level welcome', 'Session notes to look back on'] },
+  ask: 'Ask about this', recommended: 'Recommended',
+  includes: { label: 'Always included', title: 'Every session includes.', items: ['Friendly, jargon-free teaching', 'Hands-on practice with real AI tools', 'Any starting level welcome', 'Session notes to look back on'] },
   book: {
     label: 'Book', h1: ['Book your ', 'free intro call', '.'],
     lead: 'Pick the day and the time of day that suit you. Alex will reply to confirm the exact time.',
@@ -141,7 +138,7 @@ export const en = {
     windows: [{ id: 'morning', label: 'Morning', hours: '09–12' }, { id: 'afternoon', label: 'Afternoon', hours: '12–17' }, { id: 'evening', label: 'Evening', hours: '17–21' }, { id: 'flexible', label: 'Flexible', hours: 'any time' }],
     name: 'Your name', email: 'Your email', type: 'What would you like to book?', message: 'Anything Alex should know? (optional)',
     messagePh: 'For example: I’ve never used AI and I’d like to learn prompting.',
-    types: ['Free intro call', 'Single Session', 'Getting Started', 'Learning Plan', 'Custom Support Plan', 'Groups & Team Workshops', 'Not sure yet'],
+    types: ['Free intro call', 'Ad hoc Session (250 lei)', 'Saturday Group Session (300 lei/person)', 'Not sure yet'],
     summaryTitle: 'Your request', day: 'Day', time: 'Time', none: 'not chosen yet', submit: 'Send booking request',
     errDay: 'Please pick a day.', errWin: 'Please pick a time of day.', errName: 'Please add your name.', errEmail: 'Please add a valid email address.',
     okMail: 'Your email app should open with the request ready to send. Alex will reply to confirm the time.',
@@ -152,7 +149,7 @@ export const en = {
     next_: { title: 'What happens next', items: [
       { title: 'Alex confirms', text: 'You get a reply to confirm the exact time.' },
       { title: 'A friendly chat', text: 'Tell Alex what you’d love AI to do for you. No preparation needed.' },
-      { title: 'Pick a plan (or not)', text: 'If it feels right, choose a bundle. No pressure at all.' },
+      { title: 'Pick a session (or not)', text: 'If it feels right, choose an ad hoc or group session. No pressure at all.' },
     ] },
   },
   footer: '© 2026 Alex Croitoriu · Bucharest, Romania · AI tutoring for everyone',
@@ -162,7 +159,7 @@ export const ro = {
   lang: 'ro', label: 'Română',
   meta: {
     home: { title: 'Alex Croitoriu · Meditații AI pentru oricine', desc: 'Meditații individuale și prietenoase despre AI, prompting și Claude Code, explicate pe înțelesul tuturor de dezvoltatorul de software Alex Croitoriu.' },
-    services: { title: 'Servicii · Alex Croitoriu', desc: 'Pachete de meditații AI: sesiuni unice, primii pași, planuri de învățare și planuri personalizate de suport.' },
+    services: { title: 'Servicii · Alex Croitoriu', desc: 'Prețuri meditații AI: sesiuni individuale ad hoc la 250 lei și sesiuni de grup de sâmbătă la 300 lei de persoană.' },
     book: { title: 'Programează un apel introductiv gratuit · Alex Croitoriu', desc: 'Alege o zi și un moment al zilei pentru apelul tău introductiv gratuit cu Alex. Îți va răspunde pentru a confirma ora exactă.' },
   },
   nav: { aria: 'Principal', home: 'Acasă', services: 'Servicii', about: 'Despre', book: 'Programare', cta: 'Apel introductiv gratuit', langAria: 'Limba', menu: 'Meniu' },
@@ -250,22 +247,19 @@ export const ro = {
     items: [
       { q: 'Am nevoie de cunoștințe tehnice?', a: 'Deloc. Alex lucrează atât cu începători absoluți, cât și cu profesioniști cu experiență și pornește de unde ești tu.' },
       { q: 'Ce facem concret într-o sesiune?', a: 'Pornim de la ceva ce vrei să rezolvi (un text, un plan, o documentare, o idee) și lucrăm împreună, live, cu instrumente AI reale.' },
-      { q: 'Pot personaliza un plan?', a: 'Da. Fiecare plan începe cu o scurtă discuție despre obiectivele tale, iar Planurile personalizate de suport sunt croite complet pe măsura ta.' },
+      { q: 'Prin ce diferă cele două variante?', a: 'Sesiunea ad hoc este individuală, de 1,5 ore (maximum 2), și o programezi când ai nevoie. Sesiunea de grup este o sâmbătă întreagă, de 8 ore, cu un grup mic.' },
       { q: 'În ce limbi se țin sesiunile?', a: 'În engleză sau în română, cea în care te simți mai confortabil.' },
       { q: 'Trebuie să cumpăr vreun program?', a: 'Multe instrumente AI au versiuni gratuite. Alex te ajută să afli de ce ai nevoie cu adevărat înainte să cheltuiești ceva.' },
     ],
   },
   cta: { title: 'Ești gata să vezi ce poate face AI-ul pentru tine?', text: 'Programează un apel introductiv gratuit. Fără presiune, fără jargon, doar o discuție prietenoasă despre ce vrei să realizezi.', btn: 'Programează apelul gratuit' },
-  servicesPage: { label: 'Servicii', h1: ['Găsește ', 'calea potrivită', ' de a învăța.'], lead: 'Alege un pachet sau spune-i lui Alex ce ai nevoie și va croi un plan pe măsura ta.' },
+  servicesPage: { label: 'Servicii', h1: ['Găsește ', 'calea potrivită', ' de a învăța.'], lead: 'Două variante simple: o sesiune individuală când ai nevoie sau o sâmbătă întreagă în grup. Nu știi pe care s-o alegi? Întreabă-l pe Alex.' },
   bundles: {
-    single: { name: 'Sesiune unică', tag: 'Încearcă', desc: 'O sesiune individuală concentrată pe o întrebare, o sarcină sau o idee. O modalitate relaxată de a vedea cum este să lucrezi cu Alex.', features: ['Parcurgere practică, live', 'Adaptată întrebării tale', 'Notițe după sesiune'] },
-    starter: { name: 'Primii pași', tag: 'Pentru începători', desc: 'Primii tăi pași cu AI: cum funcționează, cum îi ceri bine ce vrei și un prim proiect mic al tău.', features: ['Concepte AI pe înțelesul tuturor', 'Bazele prompting-ului, exersate live', 'Un prim proiect real', 'Notițe după sesiune'] },
-    plan: { name: 'Plan de învățare', tag: 'Pentru obiectivele tale', desc: 'O serie structurată construită în jurul obiectivelor tale, de la bazele AI până la folosirea lui cu încredere în munca ta sau la construirea propriilor instrumente.', features: ['Obiective stabilite împreună de la început', 'Parcurs de învățare pas cu pas', 'Răspunsuri la întrebări între sesiuni', 'Plan personal ca să continui'] },
-    custom: { name: 'Plan personalizat de suport', tag: 'Continuu', desc: 'Sesiuni regulate plus suport pentru întrebări rapide, croit după felul tău de lucru. Un ghid la îndemână cât timp evoluezi în ritmul tău.', features: ['Program flexibil, adaptat', 'Ajutor prioritar între sesiuni', 'Planul se adaptează pe măsură ce avansezi', 'Ideal pentru profesioniști ocupați și afaceri mici'] },
+    single: { name: 'Sesiune ad hoc', tag: 'Individual', amt: '250 lei', note: 'pe sesiune · 1 persoană · maximum 2 ore', desc: 'O sesiune individuală concentrată pe o întrebare, o sarcină sau o idee. O programezi când ai nevoie: 1,5 ore, maximum 2.', features: ['Parcurgere practică, live', 'Adaptată întrebării tale', 'Notițe după sesiune'] },
+    group: { name: 'Sesiune de grup de sâmbătă', tag: 'Grup mic', amt: '300 lei', note: 'pe persoană · 8 ore · sâmbăta', desc: 'O zi întreagă de sâmbătă de învățat practic împreună cu un grup mic, de la bazele AI până la construirea a ceva al tău.', features: ['8 ore, într-o sâmbătă', 'Înveți alături de alți oameni', 'Practică cu instrumente AI reale', 'Notițe la care te poți întoarce'] },
   },
-  group: { name: 'Ateliere pentru grupuri și echipe', tag: 'Pentru echipe', desc: 'O sesiune practică, în comun, pentru o echipă, o clasă sau un grup de prieteni. Temele și durata se adaptează grupului.', btn: 'Întreabă despre ateliere' },
-  priceNote: 'Preț în curând', ask: 'Întreabă despre acesta', recommended: 'Recomandat',
-  includes: { label: 'Mereu inclus', title: 'Fiecare pachet include.', items: ['Predare prietenoasă, fără jargon', 'Practică cu instrumente AI reale', 'Orice nivel de start este binevenit', 'Notițe de sesiune la care te poți întoarce'] },
+  ask: 'Întreabă despre acesta', recommended: 'Recomandat',
+  includes: { label: 'Mereu inclus', title: 'Fiecare sesiune include.', items: ['Predare prietenoasă, fără jargon', 'Practică cu instrumente AI reale', 'Orice nivel de start este binevenit', 'Notițe de sesiune la care te poți întoarce'] },
   book: {
     label: 'Programare', h1: ['Programează-ți ', 'apelul introductiv gratuit', '.'],
     lead: 'Alege ziua și momentul zilei care ți se potrivesc. Alex îți va răspunde pentru a confirma ora exactă.',
@@ -275,7 +269,7 @@ export const ro = {
     windows: [{ id: 'morning', label: 'Dimineața', hours: '09–12' }, { id: 'afternoon', label: 'După-amiaza', hours: '12–17' }, { id: 'evening', label: 'Seara', hours: '17–21' }, { id: 'flexible', label: 'Flexibil', hours: 'oricând' }],
     name: 'Numele tău', email: 'Emailul tău', type: 'Ce ai vrea să programezi?', message: 'Ceva ce ar trebui să știe Alex? (opțional)',
     messagePh: 'De exemplu: n-am folosit niciodată AI și aș vrea să învăț prompting.',
-    types: ['Apel introductiv gratuit', 'Sesiune unică', 'Primii pași', 'Plan de învățare', 'Plan personalizat de suport', 'Ateliere pentru grupuri și echipe', 'Încă nu știu sigur'],
+    types: ['Apel introductiv gratuit', 'Sesiune ad hoc (250 lei)', 'Sesiune de grup de sâmbătă (300 lei/persoană)', 'Încă nu știu sigur'],
     summaryTitle: 'Cererea ta', day: 'Ziua', time: 'Momentul', none: 'încă nealeasă', submit: 'Trimite cererea de programare',
     errDay: 'Te rog alege o zi.', errWin: 'Te rog alege un moment al zilei.', errName: 'Te rog adaugă numele tău.', errEmail: 'Te rog adaugă o adresă de email validă.',
     okMail: 'Aplicația ta de email ar trebui să se deschidă cu cererea gata de trimis. Alex îți va răspunde pentru a confirma ora.',
@@ -286,7 +280,7 @@ export const ro = {
     next_: { title: 'Ce urmează', items: [
       { title: 'Alex confirmă', text: 'Primești un răspuns care confirmă ora exactă.' },
       { title: 'O discuție prietenoasă', text: 'Spune-i lui Alex ce ți-ar plăcea să facă AI-ul pentru tine. Nu e nevoie de pregătire.' },
-      { title: 'Alegi un plan (sau nu)', text: 'Dacă ți se pare potrivit, alegi un pachet. Fără nicio presiune.' },
+      { title: 'Alegi o sesiune (sau nu)', text: 'Dacă ți se pare potrivit, alegi o sesiune ad hoc sau de grup. Fără nicio presiune.' },
     ] },
   },
   footer: '© 2026 Alex Croitoriu · București, România · Meditații AI pentru oricine',

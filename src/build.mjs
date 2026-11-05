@@ -13,7 +13,7 @@ const ver = (f) => crypto.createHash('md5').update(fs.readFileSync(path.join(roo
 const V = { 'style.css': ver('style.css'), 'config.js': ver('config.js'), 'site.js': ver('site.js') };
 const PAGES = ['index', 'services', 'book'];
 const metaKey = { index: 'home', services: 'services', book: 'book' };
-const bundleIcons = { single: 'message', starter: 'sparkles', plan: 'compass', custom: 'users' };
+const bundleIcons = { single: 'message', group: 'users' };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const json = (o) => JSON.stringify(o).replace(/</g, '\\u003c');
@@ -32,8 +32,8 @@ function ctx(code) {
 }
 
 const h1 = (parts, tag) => `${esc(parts[0])}<${tag}>${esc(parts[1])}</${tag}>${esc(parts[2])}`;
-const price = (c) => `<div class="price"><span class="amt">——</span><span class="note">${esc(c.t.priceNote)}</span></div>`;
-const bundles = (c) => bundleKeys.map((k) => ({ key: k, ...c.t.bundles[k], icon: bundleIcons[k], featured: k === 'plan' }));
+const price = (b) => `<div class="price"><span class="amt">${esc(b.amt)}</span><span class="note">${esc(b.note)}</span></div>`;
+const bundles = (c) => bundleKeys.map((k) => ({ key: k, ...c.t.bundles[k], icon: bundleIcons[k], featured: false }));
 
 function shell(c, page, bodyClass, body, extraHead = '') {
   const m = c.t.meta[metaKey[page]];
@@ -122,7 +122,7 @@ const slab = (c, b, i) => `
   ${b.featured ? `<span class="stamp">${esc(c.t.recommended)}</span>` : ''}
   <div class="slab-l"><span class="slabno">${num(i)}</span><h3>${esc(b.name)}</h3><span class="tag">${esc(b.tag)}</span></div>
   <div class="slab-m"><p>${esc(b.desc)}</p><ul class="ticks">${b.features.map((f) => `<li>${ic('check')}${esc(f)}</li>`).join('')}</ul></div>
-  <div class="slab-r">${price(c)}<a class="btn btn-ink btn-block" href="${c.link('book')}">${esc(c.t.ask)}</a></div>
+  <div class="slab-r">${price(b)}<a class="btn btn-ink btn-block" href="${c.link('book')}">${esc(c.t.ask)}</a></div>
 </article>`;
 
 const mini = (c, b, i) => `<a class="mini s${i % 4}" href="${c.link('services')}"><span class="slabno">${num(i)}</span><h3>${esc(b.name)}</h3><p>${esc(b.desc)}</p><span class="go">${ic('arrow')}</span></a>`;
@@ -243,11 +243,6 @@ function services(c) {
 
 <section class="section tight"><div class="wrap">
   <div class="slabs">${list.map((b, i) => slab(c, b, i)).join('')}</div>
-  <article class="slab group">
-    <div class="slab-l"><span class="slabno">+</span><h3>${esc(t.group.name)}</h3><span class="tag">${esc(t.group.tag)}</span></div>
-    <div class="slab-m"><p>${esc(t.group.desc)}</p></div>
-    <div class="slab-r"><a class="btn btn-ink btn-block" href="${c.link('book')}">${esc(t.group.btn)}</a></div>
-  </article>
 </div></section>
 
 <section class="section inkband"><div class="wrap">
